@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import { motion } from "framer-motion";
-import HeroSlider from "../../components/heroSlider/HeroSLider";
+import HeroSlider from "../../components/heroSlider/HeroSlider";
 import ProductCarousel from "../../components/productCarousel/ProductCarousel";
 
 import Image1 from "../../assets/iphone.png";
