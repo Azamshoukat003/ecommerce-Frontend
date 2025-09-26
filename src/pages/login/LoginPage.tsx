@@ -35,7 +35,7 @@ const LoginPage = () => {
         email: email,
         password: password,
         rememberMe: rememberMe,
-      });
+      },{withCredentials:true});
 
       // console.log("User registered:", response.data.data.accessToken);
       localStorage.setItem("accessToken", response.data.data.accessToken);
