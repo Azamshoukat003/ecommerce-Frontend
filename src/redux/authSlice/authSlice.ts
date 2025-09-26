@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface User {
   _id: string;
@@ -24,7 +25,7 @@ export const checkAuth = createAsyncThunk(
   "auth/checkAuth",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get("/auth/me", { withCredentials: true });
+      const res = await axios.get(`${API_URL}/auth/me`, { withCredentials: true });
       // console.log(res.data.user);
       return res.data.user;
     } catch (err) {
