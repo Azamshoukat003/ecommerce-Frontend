@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +12,7 @@ const NewsletterSignup = () => {
     // handle subscription logic here
     try {
       const response = await axios.post(
-        "/auth/subscribe",
+        `${API_URL}/auth/subscribe`,
         { email },
         {
           headers: { "Content-Type": "application/json" },

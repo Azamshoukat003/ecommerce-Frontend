@@ -20,6 +20,8 @@ import { checkAuth } from "../../redux/authSlice/authSlice";
 
 import { AppDispatch } from "../../redux/store";
 import { selectCartItems } from "../../redux/cartSlice/cartSlice";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,7 +49,7 @@ const Navbar = () => {
 
   const logoutUser = async () => {
     try {
-      const response = await axios.post("/api/v1/users/logout");
+      const response = await axios.post(`${API_URL}/api/v1/users/logout`);
 
       // console.log("User registered:", response.data);
       if (response?.data?.success) {

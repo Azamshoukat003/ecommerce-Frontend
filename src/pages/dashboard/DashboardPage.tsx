@@ -17,6 +17,7 @@ import ProfileTab from "./tabsPages/ProfileTab";
 import OrdersTab from "./tabsPages/OrdersTab";
 import PaymentTab from "./tabsPages/PaymentMethodsTab";
 
+
 const tabMap = {
   profile: 0,
   orders: 1,

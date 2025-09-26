@@ -8,6 +8,7 @@ import {
   SpeakerWaveIcon,
 } from "@heroicons/react/24/outline";
 
+
 const categories = [
   { name: "Mobiles", icon: DevicePhoneMobileIcon },
   { name: "Laptops", icon: ComputerDesktopIcon },

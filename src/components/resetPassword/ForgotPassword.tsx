@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +14,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/api/v1/users/forgot-password", { email });
+      const res = await axios.post(`${API_URL}/api/v1/users/forgot-password`, { email });
       console.log(res?.data);
       navigate("/check-email");
     } catch (error) {

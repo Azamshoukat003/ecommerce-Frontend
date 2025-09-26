@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 interface TypingTextProps {
   text: string;
@@ -53,7 +55,7 @@ const HeroSlider = () => {
 
   const getHeroes = async () => {
     try {
-      const response = await axios.get("/auth/get-hero");
+      const response = await axios.get(`${API_URL}/auth/get-hero`);
       if (response?.data.success) {
         setSlides(response.data.data);
       }

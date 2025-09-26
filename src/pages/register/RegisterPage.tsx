@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 
 import { checkAuth } from "../../redux/authSlice/authSlice";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -29,7 +31,7 @@ const RegisterPage = () => {
         return showError("Please Add values in all fields");
       }
 
-      const response = await axios.post("/api/v1/users/register", {
+      const response = await axios.post(`${API_URL}/api/v1/users/register`, {
         name: name,
         email: email,
         password: password,
@@ -57,14 +59,14 @@ const RegisterPage = () => {
       const idToken = await result.user.getIdToken();
 
       // Send ID token to backend
-      const res = await axios.post("/auth/google-login", { idToken });
+      const res = await axios.post(`${API_URL}/auth/google-login`, { idToken });
       if (res?.data?.success) {
         dispatch(checkAuth());
         localStorage.setItem("token",res?.data.data.accessToken)
 
         navigate("/");
       }
-    } catch (err) {
+    } catch (err:any) {
       // console.error("Google login error", err);
       showError(err?.response?.data?.message || "Invalid User");
     }

@@ -5,6 +5,8 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { showError, showSuccess } from "../../lib/toast";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const OtpVerification = () => {
   const [otp, setOtp] = useState("");
@@ -20,7 +22,7 @@ const OtpVerification = () => {
     setMessage("");
 
     try {
-      const res = await axios.post("/api/v1/users/verify-otp", {
+      const res = await axios.post(`${API_URL}/api/v1/users/verify-otp`, {
         email,
         otp,
       });

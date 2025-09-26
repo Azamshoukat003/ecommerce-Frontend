@@ -15,6 +15,7 @@ import { auth, googleProvider } from "../../lib/firebase";
 import { checkAuth } from "../../redux/authSlice/authSlice";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const LoginPage = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
@@ -24,12 +25,13 @@ const LoginPage = () => {
 
   const loginUser = async () => {
     console.log("clicked");
+    console.log(API_URL,"url")
     try {
       if ([email, password].some((val) => val?.trim() === "")) {
         return showError("Please Add values in all fields");
       }
 
-      const response = await axios.post("/api/v1/users/login", {
+      const response = await axios.post(`${API_URL}/api/v1/users/login`, {
         email: email,
         password: password,
         rememberMe: rememberMe,
@@ -60,14 +62,14 @@ const LoginPage = () => {
       const idToken = await result.user.getIdToken();
 
       // Send ID token to backend
-      const res = await axios.post("/auth/google-login", { idToken });
+      const res = await axios.post(`${API_URL}/auth/google-login`, { idToken });
       console.log(res?.data?.data);
       if (res?.data?.success) {
         dispatch(checkAuth());
         localStorage.setItem("token", res?.data.data.accessToken);
         navigate("/");
       }
-    } catch (err) {
+    } catch (err:any) {
       // console.error("Google login error", err);
       showError(err?.response?.data?.message || "Invalid User");
     }

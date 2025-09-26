@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ResetPassword = () => {
   const { token } = useParams<{ token: string }>();
@@ -18,7 +19,7 @@ const ResetPassword = () => {
 
     setLoading(true);
     try {
-      await axios.post(`/auth/reset-password/${token}`, { password });
+      await axios.post(`${API_URL}/auth/reset-password/${token}`, { password });
       navigate("/reset-success");
     } catch (error: any) {
       alert(error.response?.data?.message || "Invalid or expired link");

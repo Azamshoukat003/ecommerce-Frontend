@@ -26,6 +26,7 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "../../redux/store";
 import { toast } from "react-toastify";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -65,7 +66,7 @@ const ProductDetailPage: React.FC = () => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`/auth/getproduct/${id}`);
+        const res = await axios.get(`${API_URL}/auth/getproduct/${id}`);
         if (res?.data?.success) {
           const prod = res.data.data;
           setProduct(prod);
@@ -101,7 +102,7 @@ const ProductDetailPage: React.FC = () => {
       currentProductId: string
     ) => {
       try {
-        const res = await axios.get(`/auth/related-products/${catIdentifier}`);
+        const res = await axios.get(`${API_URL}/auth/related-products/${catIdentifier}`);
         if (res?.data?.success) {
           let data = res.data.data || [];
           if (!Array.isArray(data)) {

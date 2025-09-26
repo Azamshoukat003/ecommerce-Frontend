@@ -13,6 +13,7 @@ import NewsletterSignup from "../../components/newEmail/NewsletterSignup";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
 import { toast } from "react-toastify";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const SectionDivider = () => {
   return <hr className="border-t border-gray-300 dark:border-zinc-700" />;
@@ -40,7 +41,7 @@ const HomePage = () => {
 
   const getAllProducts = async () => {
     try {
-      const response = await axios.get("/auth/get-products", {
+      const response = await axios.get(`${API_URL}/auth/get-products`, {
         headers: { "Content-Type": "application/json" },
       });
       if (response?.data?.success) {
@@ -55,7 +56,10 @@ const HomePage = () => {
     }
   };
 
-  const groupedProducts = products.reduce((acc: any, product) => {
+  const groupedProducts = products.reduce<Record<string, typeof products>>((
+    acc,
+    product
+  ) => {
     const category = product.category || "Others";
     if (!acc[category]) acc[category] = [];
     acc[category].push(product);

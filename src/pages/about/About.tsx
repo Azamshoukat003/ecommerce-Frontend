@@ -56,7 +56,7 @@ const About = () => {
           {/* Image and Story Section */}
           <div className="mt-20 grid md:grid-cols-2 gap-12 items-center">
             <img
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+              src="https://images.unsplash.com/photo-1706372124814-417e2f0c3fe0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Our story"
               className="w-full rounded-xl shadow-lg"
             />
